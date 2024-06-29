@@ -39,10 +39,12 @@ public class MovementController : MonoBehaviour
 
         IEnumerator TeleportCor()
         {
+            GameManager.Instance.SetInputCapture(true);
             yield return UIManager.Instance.FadeInCor();
             rb.position = position;
             yield return UIManager.Instance.FadeWaitCor();
             yield return UIManager.Instance.FadeOutCor();
+            GameManager.Instance.SetInputCapture(false);
         }
     }
 }

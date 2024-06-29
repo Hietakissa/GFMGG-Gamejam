@@ -22,5 +22,6 @@ public class GameManager : MonoBehaviour
         foreach (Manager manager in externalManagers) manager.Initialize();
     }
 
+
     public void SetInputCapture(bool inputCapture) => this.inputCapture = inputCapture;
 }

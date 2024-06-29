@@ -1,5 +1,4 @@
 using HietakissaUtils.QOL;
-
 using System.Collections;
 using UnityEngine;
 
@@ -17,18 +16,10 @@ public class UIManager : Manager
         Instance = this;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I)) FadeIn();
-        else if (Input.GetKeyDown(KeyCode.O)) FadeOut();
-    }
-
 
     public void FadeIn() => StartCoroutine(FadeInCor());
     public IEnumerator FadeInCor()
     {
-        GameManager.Instance.SetInputCapture(true);
-
         float time = 0f;
         float fadeSpeed = 1f / fadeInDuration;
         while (time < 1f)
@@ -50,8 +41,6 @@ public class UIManager : Manager
             fadeGroup.alpha = 1f - time;
             yield return null;
         }
-
-        GameManager.Instance.SetInputCapture(false);
     }
 
     public IEnumerator FadeWaitCor()
