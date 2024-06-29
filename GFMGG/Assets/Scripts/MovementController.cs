@@ -31,8 +31,8 @@ public class MovementController : MonoBehaviour
         {
             animator.SetStateIndex(0);
 
-            if (inputVector.x >= 0f) animator.SetSubStateIndex(1);
-            else animator.SetSubStateIndex(0);
+            if (inputVector.x > 0f) animator.SetSubStateIndex(1);
+            else if (inputVector.x < 0f) animator.SetSubStateIndex(0);
         }
     }
 

@@ -6,7 +6,7 @@ public class CoffeeMinigame : Minigame
 {
     MinigameManager manager;
 
-    KeyCode[] stopKeyCodes = new KeyCode[] { KeyCode.E, KeyCode.F, KeyCode.Space, KeyCode.Return };
+    KeyCode[] stopKeyCodes = new KeyCode[] { KeyCode.E, KeyCode.F, KeyCode.Z, KeyCode.Space, KeyCode.Return };
 
     bool running = false;
 
