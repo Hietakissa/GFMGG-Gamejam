@@ -26,7 +26,6 @@ public class CoffeeMinigame : Minigame
         float areaHeight = areaHeightPercent * backgroundHeight;
 
         indicatorSpeed = Random.Range(1.5f, 4f);
-        indicatorSpeed = 0.2f;
         indicatorHeightPercent = ((RectTransform)manager.CoffeeGameIndicator).sizeDelta.y / backgroundHeight;
         areaCenter = Random.Range(0.25f, 0.75f);
 

@@ -70,7 +70,7 @@ Camera:
   far clip plane: 100
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -219,9 +219,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.09, y: -0.15}
   serializedVersion: 2
-  m_Radius: 0.475
+  m_Radius: 0.3
 --- !u!50 &8327016573955106243
 Rigidbody2D:
   serializedVersion: 4
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f08e9cc63577140acb57a3588079b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 8887551904039031974}
   speed: 6
 --- !u!114 &541705764024793035
 MonoBehaviour:
@@ -320,6 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4110326820953324658}
   - component: {fileID: 4406554527399049952}
+  - component: {fileID: 8887551904039031974}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -383,8 +385,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.28315237, g: 0.9528302, b: 0.4339344, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ee4c838016580164bb5097321371049a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -394,3 +396,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8887551904039031974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742237077623393551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06865065baf221447a32182fb97c6624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4406554527399049952}
+  animationStates:
+  - name: Walking
+    subStates:
+    - name: Left
+      frames:
+      - {fileID: 21300000, guid: bfee6e047e369094b83dd06603397eb3, type: 3}
+      - {fileID: 21300000, guid: 6905c636199e6504e941795c58ca7e0f, type: 3}
+    - name: Right
+      frames:
+      - {fileID: 21300000, guid: e1471592165fe254ca7b109e8d142e1c, type: 3}
+      - {fileID: 21300000, guid: de5c00b95e36251428756ae0b4aa84e6, type: 3}
+  - name: Idle
+    subStates:
+    - name: Left
+      frames:
+      - {fileID: 21300000, guid: ee4c838016580164bb5097321371049a, type: 3}
+      - {fileID: 21300000, guid: b1e504429c6360f469d97a271cb6797d, type: 3}
+    - name: Right
+      frames:
+      - {fileID: 21300000, guid: 33b6db7ebb92b464a92bf4ffda07b5de, type: 3}
+      - {fileID: 21300000, guid: 65c3ca269e6e4fa489b09159ac2440e7, type: 3}
+  stateIndex: 0
+  subStateIndex: 0
+  frameDuration: 0.35

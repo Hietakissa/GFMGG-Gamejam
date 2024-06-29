@@ -1,6 +1,7 @@
 using HietakissaUtils.QOL;
 using System.Collections;
 using HietakissaUtils;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -53,10 +54,19 @@ public class MinigameManager : Manager
     #region Toilet Game
     [Header("Toilet Minigame")]
     [SerializeField] GameObject toiletGameHolder;
+    [SerializeField] GameObject toiletGameScreen1;
+    [SerializeField] GameObject toiletGameScreen2;
+    [SerializeField] Image toiletGameFillBar;
+
+    public GameObject ToiletGameHolder => toiletGameHolder;
+    public GameObject ToiletGameScreen1 => toiletGameScreen1;
+    public GameObject ToiletGameScreen2 => toiletGameScreen2;
+    public Image ToiletGameFillBar => toiletGameFillBar;
     #endregion
 
     PasswordMinigame passwordMinigame = new PasswordMinigame();
     CoffeeMinigame coffeeMinigame = new CoffeeMinigame();
+    ToiletMinigame toiletMinigame = new ToiletMinigame();
     Minigame currentMinigame;
 
 
@@ -70,8 +80,6 @@ public class MinigameManager : Manager
     void Update()
     {
         currentMinigame?.Update();
-
-        if (Input.GetKeyDown(KeyCode.P) && currentMinigame == null) StartMinigame(MinigameType.Password);
     }
 
     public void StartMinigame(MinigameType minigameType)
@@ -86,6 +94,7 @@ public class MinigameManager : Manager
         {
             MinigameType.Password => passwordMinigame,
             MinigameType.Coffee => coffeeMinigame,
+            MinigameType.Toilet => toiletMinigame,
             _ => null
         };
 
@@ -111,4 +120,8 @@ public class MinigameManager : Manager
     }
 
     public string GetPassword() => passwords.RandomElement();
+    public void ToiletClicked()
+    {
+        toiletMinigame.ToiletClicked();
+    }
 }

@@ -1,9 +1,9 @@
 using System.Collections;
-
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    [SerializeField] SpriteAnimator animator;
     [SerializeField] float speed;
 
     Vector2 inputVector;
@@ -20,10 +20,20 @@ public class MovementController : MonoBehaviour
         if (GameManager.Instance.InputCapture)
         {
             inputVector = Vector2.zero;
+            animator.SetStateIndex(1);
             return;
         }
 
         inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if (inputVector.sqrMagnitude == 0f) animator.SetStateIndex(1);
+        else
+        {
+            animator.SetStateIndex(0);
+
+            if (inputVector.x >= 0f) animator.SetSubStateIndex(1);
+            else animator.SetSubStateIndex(0);
+        }
     }
 
     void FixedUpdate()
