@@ -31,10 +31,13 @@ public class PasswordMinigame : Minigame
         Debug.Log($"Started password game. Password: {password}");
     }
 
-    public override void End(MinigameEndType minigameEndType)
+    public override IEnumerator EndCor(MinigameEndType minigameEndType)
     {
-        GameManager.Instance.SetInputCapture(false);
+        yield return UIManager.Instance.FadeInCor();
         manager.PasswordGameHolder.SetActive(false);
+        yield return UIManager.Instance.FadeWaitCor();
+        yield return UIManager.Instance.FadeOutCor();
+        GameManager.Instance.SetInputCapture(false);
     }
 
     public override void Update()

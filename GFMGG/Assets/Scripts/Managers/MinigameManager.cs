@@ -63,10 +63,29 @@ public class MinigameManager : Manager
     public GameObject ToiletGameScreen2 => toiletGameScreen2;
     public Image ToiletGameFillBar => toiletGameFillBar;
     #endregion
+    #region Billiard Game
+    [Header("Billiard Minigame")]
+    [SerializeField] GameObject billiardGameHolder;
+    [SerializeField] Transform billiardGameCameraOverride;
+    [SerializeField] Transform[] billiardGamePockets;
+    [SerializeField] Transform billiardGameCueBall;
+    [SerializeField] Transform[] billiardGameValueBalls;
+    [SerializeField] Transform billiardGameCueRotate;
+    [SerializeField] Transform billiardGameCueMove;
+
+    public GameObject BilliardGameHolder => billiardGameHolder;
+    public Transform BilliardGameCameraOverride => billiardGameCameraOverride;
+    public Transform[] BilliardGamePockets => billiardGamePockets;
+    public Transform BilliardGameCueBall => billiardGameCueBall;
+    public Transform[] BilliardGameValueBalls => billiardGameValueBalls;
+    public Transform BilliardGameCueRotate => billiardGameCueRotate;
+    public Transform BilliardGameCueMove => billiardGameCueMove;
+    #endregion
 
     PasswordMinigame passwordMinigame = new PasswordMinigame();
     CoffeeMinigame coffeeMinigame = new CoffeeMinigame();
     ToiletMinigame toiletMinigame = new ToiletMinigame();
+    BilliardMinigame billiardMinigame = new BilliardMinigame();
     Minigame currentMinigame;
 
 
@@ -77,10 +96,9 @@ public class MinigameManager : Manager
     }
 
 
-    void Update()
-    {
-        currentMinigame?.Update();
-    }
+    void Update() => currentMinigame?.Update();
+    void FixedUpdate() => currentMinigame?.FixedUpdate();
+
 
     public void StartMinigame(MinigameType minigameType)
     {
@@ -95,6 +113,7 @@ public class MinigameManager : Manager
             MinigameType.Password => passwordMinigame,
             MinigameType.Coffee => coffeeMinigame,
             MinigameType.Toilet => toiletMinigame,
+            MinigameType.Billiard => billiardMinigame,
             _ => null
         };
 
@@ -113,7 +132,7 @@ public class MinigameManager : Manager
         IEnumerator StopMinigameCor()
         {
             yield return QOL.WaitForSeconds.Get(1f);
-            currentMinigame?.End(minigameEnd);
+            yield return currentMinigame.EndCor(minigameEnd);
             currentMinigame = null;
             Debug.Log($"Minigame stopped. {minigameEnd}");
         }

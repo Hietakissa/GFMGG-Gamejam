@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public MovementController MovementController => movementController;
     [SerializeField] MovementController movementController;
 
+    public CameraController CameraController => cameraController;
+    [SerializeField] CameraController cameraController;
+
     [SerializeField] Manager[] externalManagers;
 
     void Awake()

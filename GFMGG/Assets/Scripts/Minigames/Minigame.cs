@@ -4,8 +4,10 @@ using UnityEngine;
 public abstract class Minigame
 {
     public abstract IEnumerator StartCor(MinigameManager manager);
-    public abstract void End(MinigameEndType minigameEndType);
+    public abstract IEnumerator EndCor(MinigameEndType minigameEndType);
     public abstract void Update();
+
+    public virtual void FixedUpdate() { }
 }
 
 public enum MinigameType

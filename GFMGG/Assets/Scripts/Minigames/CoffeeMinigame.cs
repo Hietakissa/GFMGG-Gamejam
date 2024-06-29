@@ -42,10 +42,13 @@ public class CoffeeMinigame : Minigame
         Debug.Log($"Started coffee game");
     }
 
-    public override void End(MinigameEndType minigameEndType)
+    public override IEnumerator EndCor(MinigameEndType minigameEndType)
     {
-        GameManager.Instance.SetInputCapture(false);
+        yield return UIManager.Instance.FadeInCor();
         manager.CoffeeGameHolder.SetActive(false);
+        yield return UIManager.Instance.FadeWaitCor();
+        yield return UIManager.Instance.FadeOutCor();
+        GameManager.Instance.SetInputCapture(false);
     }
 
     public override void Update()
