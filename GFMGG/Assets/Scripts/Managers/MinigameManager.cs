@@ -50,6 +50,10 @@ public class MinigameManager : Manager
     public RectTransform CoffeeGameArea => coffeeGameArea;
     public RectTransform CoffeeGameBackground => coffeeGameBackground;
     #endregion
+    #region Toilet Game
+    [Header("Toilet Minigame")]
+    [SerializeField] GameObject toiletGameHolder;
+    #endregion
 
     PasswordMinigame passwordMinigame = new PasswordMinigame();
     CoffeeMinigame coffeeMinigame = new CoffeeMinigame();
