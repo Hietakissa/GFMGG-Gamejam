@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -15,13 +17,32 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.InputCapture)
+        {
+            inputVector = Vector2.zero;
+            return;
+        }
+
         inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     void FixedUpdate()
     {
-        //Vector2 localInputVector = transform.TransformDirection(inputVector);
         Vector2 moveVector = inputVector.normalized * speed * 50 * Time.fixedDeltaTime;
         rb.velocity = moveVector;
+    }
+
+
+    public void Teleport(Vector3 position)
+    {
+        StartCoroutine(TeleportCor());
+
+        IEnumerator TeleportCor()
+        {
+            yield return UIManager.Instance.FadeInCor();
+            rb.position = position;
+            yield return UIManager.Instance.FadeWaitCor();
+            yield return UIManager.Instance.FadeOutCor();
+        }
     }
 }

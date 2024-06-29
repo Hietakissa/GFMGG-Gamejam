@@ -5,6 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public bool InputCapture => inputCapture;
+    bool inputCapture;
+
+    public MovementController MovementController => movementController;
+    [SerializeField] MovementController movementController;
+
     [SerializeField] Manager[] externalManagers;
 
     void Awake()
@@ -15,4 +21,6 @@ public class GameManager : MonoBehaviour
         foreach (Manager manager in managers) manager.Initialize();
         foreach (Manager manager in externalManagers) manager.Initialize();
     }
+
+    public void SetInputCapture(bool inputCapture) => this.inputCapture = inputCapture;
 }
