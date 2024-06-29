@@ -1,33 +1,52 @@
+using HietakissaUtils.QOL;
+using System.Collections;
 using HietakissaUtils;
 using UnityEngine;
 using TMPro;
-using System.Collections;
-using HietakissaUtils.QOL;
 
 public class MinigameManager : Manager
 {
     public static MinigameManager Instance;
 
+    #region Password Game
     [Header("Password Minigame")]
     [SerializeField] GameObject passwordGameHolder;
     [SerializeField] string[] passwords;
-    [SerializeField] TextMeshProUGUI passwordGameTypeText;
-    [SerializeField] TextMeshProUGUI passwordGameDashText;
+
     [SerializeField] Color passwordGameNormalColor;
     [SerializeField] Color passwordGameNextCharacterColor;
     [SerializeField] Color passwordGameWinColor;
     [SerializeField] Color passwordGameLoseColor;
 
-    PasswordMinigame passwordMinigame = new PasswordMinigame();
-    Minigame currentMinigame;
-
+    [SerializeField] TextMeshProUGUI passwordGameTypeText;
+    [SerializeField] TextMeshProUGUI passwordGameDashText;
+    
     public GameObject PasswordGameHolder => passwordGameHolder;
     public Color PasswordGameNormalColor => passwordGameNormalColor;
     public Color PasswordGameNextCharacterColor => passwordGameNextCharacterColor;
     public Color PasswordGameWinColor => passwordGameWinColor;
     public Color PasswordGameLoseColor => passwordGameLoseColor;
+    
     public TextMeshProUGUI PasswordGameTypeText => passwordGameTypeText;
     public TextMeshProUGUI PasswordGameDashText => passwordGameDashText;
+    #endregion
+    #region Coffee Game
+    [Header("Coffee Minigame")]
+    [SerializeField] GameObject coffeeGameHolder;
+    [SerializeField] Transform coffeeGameIndicator;
+    [SerializeField] Transform coffeeGameIndicatorTop;
+    [SerializeField] Transform coffeeGameIndicatorBottom;
+
+    public GameObject CoffeeGameHolder => coffeeGameHolder;
+    public Transform CoffeeGameIndicator => coffeeGameIndicator;
+    public Transform CoffeeGameIndicatorTop => coffeeGameIndicatorTop;
+    public Transform CoffeeGameIndicatorBottom => coffeeGameIndicatorBottom;
+    #endregion
+
+    PasswordMinigame passwordMinigame = new PasswordMinigame();
+    CoffeeMinigame coffeeMinigame = new CoffeeMinigame();
+    Minigame currentMinigame;
+
 
 
     public override void Initialize()
@@ -51,19 +70,19 @@ public class MinigameManager : Manager
             return;
         }
 
-
-        switch (minigameType)
+        currentMinigame = minigameType switch
         {
-            case MinigameType.Password:
-                currentMinigame = passwordMinigame;
-                break;
-        }
+            MinigameType.Password => passwordMinigame,
+            MinigameType.Coffee => coffeeMinigame,
+            _ => null
+        };
 
         if (currentMinigame != null)
         {
             Debug.Log($"Starting minigame {minigameType}");
             StartCoroutine(currentMinigame.StartCor(this));
         }
+        else Debug.Log($"MinigameManager StartMinigame Switch statement not implemented for '{minigameType}'");
     }
 
     public void StopMinigame(MinigameEndType minigameEnd)
