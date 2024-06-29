@@ -9,7 +9,7 @@ public class InteractionController : MonoBehaviour
 
     [SerializeField] Canvas canvas;
 
-    KeyCode[] interactionKeys = new KeyCode[] { KeyCode.E, KeyCode.Z };
+    KeyCode[] interactionKeys = new KeyCode[] { KeyCode.E, KeyCode.F, KeyCode.Z, KeyCode.Space, KeyCode.Return };
     List<InteractablePosition> interactables = new List<InteractablePosition>();
     Collider2D[] colls = new Collider2D[10];
     Transform interactableTransform;

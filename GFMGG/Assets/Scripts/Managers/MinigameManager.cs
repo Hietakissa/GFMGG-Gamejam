@@ -36,11 +36,19 @@ public class MinigameManager : Manager
     [SerializeField] Transform coffeeGameIndicator;
     [SerializeField] Transform coffeeGameIndicatorTop;
     [SerializeField] Transform coffeeGameIndicatorBottom;
+    [SerializeField] Transform coffeeGameIndicatorAbsoluteTop;
+    [SerializeField] Transform coffeeGameIndicatorAbsoluteBottom;
+    [SerializeField] RectTransform coffeeGameArea;
+    [SerializeField] RectTransform coffeeGameBackground;
 
     public GameObject CoffeeGameHolder => coffeeGameHolder;
     public Transform CoffeeGameIndicator => coffeeGameIndicator;
     public Transform CoffeeGameIndicatorTop => coffeeGameIndicatorTop;
     public Transform CoffeeGameIndicatorBottom => coffeeGameIndicatorBottom;
+    public Transform CoffeeGameIndicatorAbsoluteTop => coffeeGameIndicatorAbsoluteTop;
+    public Transform CoffeeGameIndicatorAbsoluteBottom => coffeeGameIndicatorAbsoluteBottom;
+    public RectTransform CoffeeGameArea => coffeeGameArea;
+    public RectTransform CoffeeGameBackground => coffeeGameBackground;
     #endregion
 
     PasswordMinigame passwordMinigame = new PasswordMinigame();

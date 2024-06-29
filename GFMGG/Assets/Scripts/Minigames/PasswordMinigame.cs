@@ -60,6 +60,7 @@ public class PasswordMinigame : Minigame
 
     void Stop(MinigameEndType minigameEndType)
     {
+        running = false;
         UpdateText(minigameEndType);
         manager.StopMinigame(minigameEndType);
     }

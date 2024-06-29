@@ -2,9 +2,9 @@ using UnityEngine;
 
 public static class Helpers
 {
-    public static bool KeyDown(ref KeyCode[] keycodes)
+    public static bool KeyDown(ref KeyCode[] keycodes, bool capturable = true)
     {
-        if (GameManager.Instance.InputCapture) return false;
+        if (capturable && GameManager.Instance.InputCapture) return false;
 
         for (int i = 0; i < keycodes.Length; i++)
         {
