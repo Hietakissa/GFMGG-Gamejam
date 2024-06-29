@@ -9,7 +9,7 @@ public class BilliardMinigame : Minigame
 
     Camera cam;
 
-    const int CONST_MAX_STROKES = 20;
+    const int CONST_MAX_STROKES = 30;
     float cueTurnSpeed = 7f;
     float hitForce = 250f;
     float ballStopThreshold = 0.015f;
