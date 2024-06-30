@@ -25,7 +25,7 @@ public class PasswordMinigame : Minigame
         passwordCharIndex = 0;
         nextChar = password[passwordCharIndex].ToString();
 
-        wordMaxTime = timePerCharacter * password.Length * MinigameManager.Instance.DifficultyMultiplier;
+        wordMaxTime = (timePerCharacter * password.Length) / MinigameManager.Instance.DifficultyMultiplier;
         time = wordMaxTime;
 
         yield return UIManager.Instance.FadeInCor();

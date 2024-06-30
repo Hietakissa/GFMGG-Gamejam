@@ -10,10 +10,12 @@ public class ToiletMinigame : Minigame
     KeyCode[] poopKeyCodes = new KeyCode[] { KeyCode.E, KeyCode.F, KeyCode.Z, KeyCode.Space, KeyCode.Return };
 
     float flatulence;
-    float bowelFillRate = 0.4f;
+    float baseBowelFillRate = 0.4f;
+    float bowelFillRate;
     float emptyPerClick = 0.1f;
     float rampingUpSpeed;
-
+    float baseMaxRampUp = 1.5f;
+    float maxRampUp = 1.5f;
     public override IEnumerator StartCor(MinigameManager manager)
     {
         this.manager = manager;
@@ -21,6 +23,8 @@ public class ToiletMinigame : Minigame
 
         flatulence = 0.5f;
         rampingUpSpeed = 1f;
+        bowelFillRate = baseBowelFillRate * manager.DifficultyMultiplier;
+        maxRampUp = Mathf.Max(baseMaxRampUp, baseMaxRampUp * (manager.DifficultyMultiplier * 0.5f));
 
         yield return UIManager.Instance.FadeInCor();
         manager.ToiletGameHolder.SetActive(true);
@@ -57,9 +61,8 @@ public class ToiletMinigame : Minigame
         }
         if (!running) return;
 
-        const float CONST_MAX_RAMP_UP_SPEED = 1.5f;
-        if (rampingUpSpeed < CONST_MAX_RAMP_UP_SPEED) rampingUpSpeed += 0.25f * Time.deltaTime;
-        else if (rampingUpSpeed > CONST_MAX_RAMP_UP_SPEED) rampingUpSpeed = CONST_MAX_RAMP_UP_SPEED;
+        if (rampingUpSpeed < maxRampUp) rampingUpSpeed += 0.25f * Time.deltaTime;
+        else if (rampingUpSpeed > maxRampUp) rampingUpSpeed = maxRampUp;
 
         flatulence -= bowelFillRate * rampingUpSpeed * Time.deltaTime;
         if (Helpers.KeyDown(ref poopKeyCodes, false))
