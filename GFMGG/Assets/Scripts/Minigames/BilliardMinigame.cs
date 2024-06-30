@@ -1,6 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-
+using System.Collections;
 using HietakissaUtils;
 using UnityEngine;
 
@@ -127,6 +126,8 @@ public class BilliardMinigame : Minigame
 
                 strokes++;
                 lastShot = Time.time;
+
+                manager.BilliardGameShotsText.text = $"{strokes}\n---\n{CONST_MAX_STROKES}";
 
                 SoundManager.Instance.PlaySound(SoundType.BallHit);
             }

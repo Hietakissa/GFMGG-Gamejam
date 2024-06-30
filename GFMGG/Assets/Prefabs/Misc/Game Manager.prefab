@@ -143,6 +143,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initializeOnStart: 0
+  ballHitBallSound: {fileID: 11400000, guid: b0e59997f60a3c045a42d27f1134b698, type: 2}
+  ballHitWallSound: {fileID: 11400000, guid: 556a950756ee97442859ee8ac2c8a1f6, type: 2}
+  ballHitSound: {fileID: 11400000, guid: f6bc7262be9047943ae6074d22b379e9, type: 2}
+  keyboardClackSound: {fileID: 11400000, guid: c1be7fa031dec104a8e55f9435653d56, type: 2}
+  successSound: {fileID: 11400000, guid: 54df1a3d1394b414c932d024fa2627c0, type: 2}
+  failSound: {fileID: 11400000, guid: b192dfb7b5f819441ad2a02631bbcb92, type: 2}
+  walkSound: {fileID: 11400000, guid: c31a7a4eeceeca144af8a11a9e83ebf3, type: 2}
+  ballPocketedSound: {fileID: 11400000, guid: 3a2283e381e37be41a73a4624b239f68, type: 2}
 --- !u!1 &7503834316436144023
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +207,7 @@ MonoBehaviour:
   - villenkellari
   - showpaini
   - barbaarit
+  - pelijamit
   passwordGameNormalColor: {r: 1, g: 1, b: 1, a: 0}
   passwordGameNextCharacterColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   passwordGameWinColor: {r: 0.21048117, g: 0.8867924, b: 0.18823427, a: 0}

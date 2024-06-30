@@ -72,6 +72,7 @@ public class MinigameManager : Manager
     [SerializeField] Transform[] billiardGameValueBalls;
     [SerializeField] Transform billiardGameCueRotate;
     [SerializeField] Transform billiardGameCueMove;
+    [SerializeField] TextMeshProUGUI billiardGameShotsText;
 
     public GameObject BilliardGameHolder => billiardGameHolder;
     public Transform BilliardGameCameraOverride => billiardGameCameraOverride;
@@ -80,6 +81,7 @@ public class MinigameManager : Manager
     public Transform[] BilliardGameValueBalls => billiardGameValueBalls;
     public Transform BilliardGameCueRotate => billiardGameCueRotate;
     public Transform BilliardGameCueMove => billiardGameCueMove;
+    public TextMeshProUGUI BilliardGameShotsText => billiardGameShotsText;
     #endregion
     #region ShowImage Game
     [Header("Show Image Minigame")]
