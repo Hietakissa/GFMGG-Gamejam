@@ -29,6 +29,7 @@ public class BoxingMinigame : Minigame
     float punchDelay = 0.2f;
     float punchDelayTime;
 
+    int jariBaseMaxLives = 100;
     int jariMaxLives = 100;
     int jariLives;
     int maxLives = 3;
@@ -45,7 +46,8 @@ public class BoxingMinigame : Minigame
         jariMaxPunchCooldown = jariBaseMaxPunchCooldown / manager.DifficultyMultiplier;
         jariMinPunchCooldown = jariBaseMinPunchCooldown / manager.DifficultyMultiplier;
         jariWaitingForPunch = false;
-        jariLives = (jariMaxLives * manager.DifficultyMultiplier).RoundDown();
+        jariMaxLives = (jariBaseMaxLives * manager.DifficultyMultiplier).RoundDown();
+        jariLives = jariMaxLives;
         lives = maxLives;
         manager.BoxingGameJariLivesFill.fillAmount = 1f;
         manager.BoxingGamePlayerLivesFill.fillAmount = 1f;
@@ -127,26 +129,26 @@ public class BoxingMinigame : Minigame
 
         if (!successfulBlock)
         {
+            SoundManager.Instance.PlaySound(SoundType.Punch);
+
             lives--;
 
             manager.BoxingGamePlayerLivesFill.fillAmount = lives / (float)maxLives;
             if (lives <= 0) Stop(MinigameEndType.Lose);
         }
+        else SoundManager.Instance.PlaySound(SoundType.Block);
     }
 
     void Punch()
     {
+        SoundManager.Instance.PlaySound(SoundType.Punch);
+
         punchDelayTime = punchDelay;
 
-        Debug.Log("Punched");
-
         jariLives--;
-        manager.BoxingGameJariLivesFill.fillAmount = jariLives / (float)(jariMaxLives);
+        manager.BoxingGameJariLivesFill.fillAmount = jariLives / (float)jariMaxLives;
 
-        if (jariLives <= 0)
-        {
-            Stop(MinigameEndType.Win);
-        }
+        if (jariLives <= 0) Stop(MinigameEndType.Win);
     }
 
     void Block()
