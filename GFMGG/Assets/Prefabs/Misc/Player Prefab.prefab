@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8887551904039031974}
   speed: 6
+  distancePerStep: 2
 --- !u!114 &541705764024793035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4406554527399049952}
+  image: {fileID: 0}
   animationStates:
   - name: Walking
     subStates:

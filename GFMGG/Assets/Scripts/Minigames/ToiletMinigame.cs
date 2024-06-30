@@ -1,3 +1,5 @@
+using HietakissaUtils;
+
 using System.Collections;
 using UnityEngine;
 
@@ -16,6 +18,8 @@ public class ToiletMinigame : Minigame
     float rampingUpSpeed;
     float baseMaxRampUp = 1.5f;
     float maxRampUp = 1.5f;
+    int skippedGrunts;
+
     public override IEnumerator StartCor(MinigameManager manager)
     {
         this.manager = manager;
@@ -67,6 +71,17 @@ public class ToiletMinigame : Minigame
         flatulence -= bowelFillRate * rampingUpSpeed * Time.deltaTime;
         if (Helpers.KeyDown(ref poopKeyCodes, false))
         {
+            if (Maf.RandomBool(45)) SoundManager.Instance.PlaySound(SoundType.Grunt);
+            else
+            {
+                skippedGrunts++;
+                if (skippedGrunts > 2)
+                {
+                    SoundManager.Instance.PlaySound(SoundType.Grunt);
+                    skippedGrunts = 0;
+                }
+            }
+
             flatulence += emptyPerClick;
         }
 

@@ -19,6 +19,7 @@ public class SoundManager : Manager
     [SerializeField] SoundContainer failSound;
     [SerializeField] SoundContainer walkSound;
     [SerializeField] SoundContainer ballPocketedSound;
+    [SerializeField] SoundContainer gruntSound;
 
     AudioSource CreateSource()
     {
@@ -61,6 +62,7 @@ public class SoundManager : Manager
             case SoundType.Fail: failSound.ApplyToAudioSource(source); break;
             case SoundType.Walk: walkSound.ApplyToAudioSource(source); break;
             case SoundType.BallPocketed: ballPocketedSound.ApplyToAudioSource(source); break;
+            case SoundType.Grunt: gruntSound.ApplyToAudioSource(source); break;
             default: Debug.Log($"Sound not implemented for '{type}'"); break;
         }
 
@@ -90,5 +92,6 @@ public enum SoundType
     Success,
     Fail,
     Walk,
-    BallPocketed
+    BallPocketed,
+    Grunt
 }

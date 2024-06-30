@@ -37,7 +37,7 @@ public class PasswordMinigame : Minigame
         yield return UIManager.Instance.FadeOutCor();
         running = true;
 
-        Debug.Log($"Started password game. Password: {password}");
+        //Debug.Log($"Started password game. Password: {password}");
     }
 
     public override IEnumerator EndCor(MinigameEndType minigameEndType)

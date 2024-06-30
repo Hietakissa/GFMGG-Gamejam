@@ -159,26 +159,10 @@ public class MinigameManager : Manager
                     yield return QOL.WaitForSeconds.Get(0.3f);
                     SoundManager.Instance.PlaySound(SoundType.Success);
                 }
-
-                yield return QOL.WaitForSeconds.Get(0.5f);
-
-                for (int i = 0; i < 2; i++)
-                {
-                    yield return QOL.WaitForSeconds.Get(0.15f);
-                    SoundManager.Instance.PlaySound(SoundType.Success);
-                }
             }
             else if (minigameEnd == MinigameEndType.Lose)
             {
                 for (int i = 0; i < 2; i++)
-                {
-                    yield return QOL.WaitForSeconds.Get(0.35f);
-                    SoundManager.Instance.PlaySound(SoundType.Fail);
-                }
-
-                yield return QOL.WaitForSeconds.Get(0.45f);
-
-                for (int i = 0; i < 3; i++)
                 {
                     yield return QOL.WaitForSeconds.Get(0.15f);
                     SoundManager.Instance.PlaySound(SoundType.Fail);
