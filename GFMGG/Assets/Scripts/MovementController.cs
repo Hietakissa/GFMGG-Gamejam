@@ -5,14 +5,18 @@ public class MovementController : MonoBehaviour
 {
     [SerializeField] SpriteAnimator animator;
     [SerializeField] float speed;
+    [SerializeField] float distancePerStep;
 
     Vector2 inputVector;
     Rigidbody2D rb;
+    Vector3 lastPos;
+    float walkedDistance;
 
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        lastPos = transform.position;
     }
 
     void Update()
@@ -22,6 +26,15 @@ public class MovementController : MonoBehaviour
             inputVector = Vector2.zero;
             animator.SetStateIndex(1);
             return;
+        }
+        else
+        {
+            walkedDistance += Vector3.Distance(lastPos, transform.position);
+            if (walkedDistance >= distancePerStep)
+            {
+                walkedDistance -= distancePerStep;
+                SoundManager.Instance.PlaySound(SoundType.Walk);
+            }
         }
 
         inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -34,6 +47,8 @@ public class MovementController : MonoBehaviour
             if (inputVector.x > 0f) animator.SetSubStateIndex(1);
             else if (inputVector.x < 0f) animator.SetSubStateIndex(0);
         }
+
+        lastPos = transform.position;
     }
 
     void FixedUpdate()
@@ -52,6 +67,7 @@ public class MovementController : MonoBehaviour
             GameManager.Instance.SetInputCapture(true);
             yield return UIManager.Instance.FadeInCor();
             rb.position = position;
+            lastPos = position;
             yield return UIManager.Instance.FadeWaitCor();
             yield return UIManager.Instance.FadeOutCor();
             GameManager.Instance.SetInputCapture(false);

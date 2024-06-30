@@ -3,6 +3,8 @@ using UnityEngine;
 public class MinigameStarter : MonoBehaviour, IInteractable
 {
     [SerializeField] MinigameType minigame;
+    [SerializeField] string overrideInteractionText;
+    [SerializeField] float difficultyMultiplier = 1f;
     [SerializeField]
     [ConditionalField(nameof(minigame), (int)MinigameType.ShowImage)] int imageIndex;
     [SerializeField]
@@ -10,6 +12,8 @@ public class MinigameStarter : MonoBehaviour, IInteractable
 
     public string GetInteractionText()
     {
+        if (!string.IsNullOrEmpty(overrideInteractionText)) return overrideInteractionText;
+
         return minigame switch
         {
             MinigameType.Password => "Enter password",
@@ -21,7 +25,8 @@ public class MinigameStarter : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        MinigameManager.Instance.StartMinigame(minigame);
         if (minigame == MinigameType.ShowImage) MinigameManager.Instance.SetImageIndex(imageIndex);
+        MinigameManager.Instance.SetDifficultyMultiplier(difficultyMultiplier);
+        MinigameManager.Instance.StartMinigame(minigame);
     }
 }

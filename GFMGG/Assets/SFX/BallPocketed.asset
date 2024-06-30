@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f112297c97da0d5499296296165ded31, type: 3}
-  m_Name: BallHitWall
+  m_Name: BallPocketed
   m_EditorClassIdentifier: 
   <Mode>k__BackingField: 2
   <DefaultMixer>k__BackingField: {fileID: 24300002, guid: 05344efa540dc5a4f9a595ad41f09a98, type: 2}
   volumeRange: {x: 1, y: 1}
   pitchRange: {x: 1, y: 1}
   clips:
-  - _Name: ball_hit_wall
+  - _Name: Ball_Pocketed
     _HasBeenManuallySet: 1
     overrideMixer: {fileID: 0}
-    clip: {fileID: 8300000, guid: fc12924e3d0e934489080a9516c709e5, type: 3}
-    volumeRange: {x: 0.8, y: 1}
-    pitchRange: {x: 0.9, y: 1.1}
+    clip: {fileID: 8300000, guid: b0cdfc9ea580e50468e6b45569c5dcd2, type: 3}
+    volumeRange: {x: 0.5, y: 0.7}
+    pitchRange: {x: 0.7, y: 0.9}
     spatialBlend: 0
     loop: 0
     next: []
-    actualVolumeRange: {x: 0.8, y: 1}
-    actualPitchRange: {x: 0.9, y: 1.1}
+    actualVolumeRange: {x: 0.5, y: 0.7}
+    actualPitchRange: {x: 0.7, y: 0.9}
   shuffleIndexList: 00000000
   _previewButton: 0
   _stopPreviewButton: 0

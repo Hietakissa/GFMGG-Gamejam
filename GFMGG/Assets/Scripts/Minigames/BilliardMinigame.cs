@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+
 using HietakissaUtils;
 using UnityEngine;
 
@@ -30,6 +32,9 @@ public class BilliardMinigame : Minigame
     float lastShot;
     int ballsSunk;
     int strokes;
+
+    List<Rigidbody2D> pocketingBalls = new List<Rigidbody2D>();
+
 
     public override IEnumerator StartCor(MinigameManager manager)
     {
@@ -78,7 +83,7 @@ public class BilliardMinigame : Minigame
 
     public override void Update()
     {
-        if (!running || AreBallsMoving() || Time.time - lastShot < 1f) return;
+        if (!running || AreBallsMoving() || Time.time - lastShot < 1f || pocketingBalls.Count > 0) return;
 
         if (strokes >= CONST_MAX_STROKES)
         {
@@ -134,7 +139,7 @@ public class BilliardMinigame : Minigame
         for (int i = 0; i < allBallRBs.Length; i++)
         {
             Rigidbody2D ballRB = allBallRBs[i];
-            if (!ballRB.gameObject.activeSelf) continue;
+            if (!ballRB.gameObject.activeSelf || pocketingBalls.Contains(ballRB)) continue;
 
             for (int p = 0; p < manager.BilliardGamePockets.Length; p++)
             {
@@ -148,10 +153,7 @@ public class BilliardMinigame : Minigame
                     }
                     else
                     {
-                        ballRB.gameObject.SetActive(false);
-                        ballsSunk++;
-
-                        if (ballsSunk >= 15) Stop(MinigameEndType.Win);
+                        PocketBall(ballRB);
                     }
                 }
                 else if (Vector2.Distance(ballRB.position, pocket.position) <= pocketSuckThreshold)
@@ -160,6 +162,35 @@ public class BilliardMinigame : Minigame
                     ballRB.AddForce(dirToPocket * 3.5f);
                 }
             }
+        }
+    }
+
+    void PocketBall(Rigidbody2D ballRB)
+    {
+        manager.StartCoroutine(PocketBallCor());
+
+        IEnumerator PocketBallCor()
+        {
+            ballRB.velocity = ballRB.velocity * 0.2f;
+
+            pocketingBalls.Add(ballRB);
+
+            float time = 1f;
+            while (time > 0f)
+            {
+                time -= 2f * Time.deltaTime;
+                ballRB.transform.localScale = Vector3.one * time;
+                yield return null;
+            }
+
+            ballRB.gameObject.SetActive(false);
+            ballRB.transform.localScale = Vector3.one;
+            ballsSunk++;
+
+            SoundManager.Instance.PlaySound(SoundType.BallPocketed);
+
+            pocketingBalls.Remove(ballRB);
+            if (ballsSunk >= 15) Stop(MinigameEndType.Win);
         }
     }
 

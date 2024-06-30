@@ -8,13 +8,19 @@ public class NPC : MonoBehaviour, IInteractable
     [SerializeField] Dialogue[] dialogue;
     [SerializeField] string npcName;
 
+    [SerializeField] string overrideInteractionText;
+
     [Header("Jari Only")]
     [SerializeField] Dialogue barbaariDialogue;
     [SerializeField] float barbaariChance;
     [SerializeField] GameObject barbaariCues;
     bool barbaari;
 
-    public string GetInteractionText() => $"Talk to {npcName}";
+    public string GetInteractionText()
+    {
+        if (string.IsNullOrEmpty(overrideInteractionText)) return $"Talk to {npcName}";
+        else return overrideInteractionText;
+    }
     public void Interact()
     {
         Dialogue dialogue;

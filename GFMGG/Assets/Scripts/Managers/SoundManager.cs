@@ -1,9 +1,7 @@
-using HietakissaUtils;
 using HietakissaUtils.Pooling;
 using HietakissaUtils.QOL;
-
 using System.Collections;
-
+using HietakissaUtils;
 using UnityEngine;
 
 public class SoundManager : Manager
@@ -16,6 +14,11 @@ public class SoundManager : Manager
     [SerializeField] SoundContainer ballHitBallSound;
     [SerializeField] SoundContainer ballHitWallSound;
     [SerializeField] SoundContainer ballHitSound;
+    [SerializeField] SoundContainer keyboardClackSound;
+    [SerializeField] SoundContainer successSound;
+    [SerializeField] SoundContainer failSound;
+    [SerializeField] SoundContainer walkSound;
+    [SerializeField] SoundContainer ballPocketedSound;
 
     AudioSource CreateSource()
     {
@@ -53,7 +56,12 @@ public class SoundManager : Manager
             case SoundType.BallHitBall: ballHitBallSound.ApplyToAudioSource(source); break;
             case SoundType.BallHitWall: ballHitWallSound.ApplyToAudioSource(source); break;
             case SoundType.BallHit: ballHitSound.ApplyToAudioSource(source); break;
-            default: break;
+            case SoundType.KeyboardClack: keyboardClackSound.ApplyToAudioSource(source); break;
+            case SoundType.Success: successSound.ApplyToAudioSource(source); break;
+            case SoundType.Fail: failSound.ApplyToAudioSource(source); break;
+            case SoundType.Walk: walkSound.ApplyToAudioSource(source); break;
+            case SoundType.BallPocketed: ballPocketedSound.ApplyToAudioSource(source); break;
+            default: Debug.Log($"Sound not implemented for '{type}'"); break;
         }
 
         ReturnSourceToPool(source);
@@ -77,5 +85,10 @@ public enum SoundType
 {
     BallHitBall,
     BallHitWall,
-    BallHit
+    BallHit,
+    KeyboardClack,
+    Success,
+    Fail,
+    Walk,
+    BallPocketed
 }

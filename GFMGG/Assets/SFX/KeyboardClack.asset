@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f112297c97da0d5499296296165ded31, type: 3}
-  m_Name: BallHitWall
+  m_Name: KeyboardClack
   m_EditorClassIdentifier: 
   <Mode>k__BackingField: 2
   <DefaultMixer>k__BackingField: {fileID: 24300002, guid: 05344efa540dc5a4f9a595ad41f09a98, type: 2}
   volumeRange: {x: 1, y: 1}
   pitchRange: {x: 1, y: 1}
   clips:
-  - _Name: ball_hit_wall
+  - _Name: Text_sound
     _HasBeenManuallySet: 1
     overrideMixer: {fileID: 0}
-    clip: {fileID: 8300000, guid: fc12924e3d0e934489080a9516c709e5, type: 3}
+    clip: {fileID: 8300000, guid: 504d0967b556cd244a0c876e7134f1b1, type: 3}
     volumeRange: {x: 0.8, y: 1}
     pitchRange: {x: 0.9, y: 1.1}
     spatialBlend: 0

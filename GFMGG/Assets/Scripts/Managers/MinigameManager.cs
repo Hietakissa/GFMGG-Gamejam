@@ -92,9 +92,11 @@ public class MinigameManager : Manager
 
     [SerializeField] GameObject timerBar;
     [SerializeField] Image timerfill;
+    float difficultyMultiplier;
 
     public GameObject TimerBar => timerBar;
     public Image TimerFill => timerfill;
+    public float DifficultyMultiplier => difficultyMultiplier;
 
 
     PasswordMinigame passwordMinigame = new PasswordMinigame();
@@ -148,6 +150,39 @@ public class MinigameManager : Manager
 
         IEnumerator StopMinigameCor()
         {
+            if (minigameEnd == MinigameEndType.Win)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    yield return QOL.WaitForSeconds.Get(0.3f);
+                    SoundManager.Instance.PlaySound(SoundType.Success);
+                }
+
+                yield return QOL.WaitForSeconds.Get(0.5f);
+
+                for (int i = 0; i < 2; i++)
+                {
+                    yield return QOL.WaitForSeconds.Get(0.15f);
+                    SoundManager.Instance.PlaySound(SoundType.Success);
+                }
+            }
+            else if (minigameEnd == MinigameEndType.Lose)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    yield return QOL.WaitForSeconds.Get(0.35f);
+                    SoundManager.Instance.PlaySound(SoundType.Fail);
+                }
+
+                yield return QOL.WaitForSeconds.Get(0.45f);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    yield return QOL.WaitForSeconds.Get(0.15f);
+                    SoundManager.Instance.PlaySound(SoundType.Fail);
+                }
+            }
+
             yield return QOL.WaitForSeconds.Get(1f);
             yield return currentMinigame.EndCor(minigameEnd);
             currentMinigame = null;
@@ -161,4 +196,5 @@ public class MinigameManager : Manager
         toiletMinigame.ToiletClicked();
     }
     public void SetImageIndex(int index) => showImageGameIndex = index;
+    public void SetDifficultyMultiplier(float difficultyMultiplier) => this.difficultyMultiplier = difficultyMultiplier;
 }

@@ -2910,6 +2910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: 1
+  overrideInteractionText: Enter password - Easy
+  difficultyMultiplier: 0.1
   imageIndex: 0
   dialogue: 
 --- !u!58 &388507849
@@ -4646,6 +4648,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: 2
+  overrideInteractionText: 
+  difficultyMultiplier: 1
   imageIndex: 0
   dialogue: 
 --- !u!58 &563616869
@@ -8682,6 +8686,7 @@ MonoBehaviour:
     textDuration: 0
     imageIndex: 0
   npcName: Ville
+  overrideInteractionText: Look outside
   barbaariDialogue:
     textBubble: {fileID: 0}
     textDuration: 0
@@ -10234,6 +10239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: 1
+  overrideInteractionText: Enter password - Normal
+  difficultyMultiplier: 1
   imageIndex: 0
   dialogue: 
 --- !u!58 &1069331876
@@ -14640,6 +14647,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: 3
+  overrideInteractionText: 
+  difficultyMultiplier: 1
   imageIndex: 0
   dialogue: 
 --- !u!58 &1847707781
@@ -15805,6 +15814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: 4
+  overrideInteractionText: 
+  difficultyMultiplier: 1
   imageIndex: 0
   dialogue: 
 --- !u!58 &1914836666
@@ -16319,6 +16330,7 @@ MonoBehaviour:
     textDuration: 0
     imageIndex: 1
   npcName: Kosti
+  overrideInteractionText: 
   barbaariDialogue:
     textBubble: {fileID: 0}
     textDuration: 0
@@ -16638,6 +16650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: 3
+  overrideInteractionText: 
+  difficultyMultiplier: 1
   imageIndex: 0
   dialogue: 
 --- !u!58 &1977185385
@@ -18294,6 +18308,7 @@ MonoBehaviour:
     textDuration: 0
     imageIndex: 1
   npcName: Jari
+  overrideInteractionText: 
   barbaariDialogue:
     textBubble: {fileID: 1754187281}
     textDuration: 3
@@ -18984,9 +18999,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8647258401870591633, guid: 3ca4965f75e6f6b46927d389ea3eb255, type: 3}
+      propertyPath: failSound
+      value: 
+      objectReference: {fileID: 11400000, guid: b192dfb7b5f819441ad2a02631bbcb92, type: 2}
+    - target: {fileID: 8647258401870591633, guid: 3ca4965f75e6f6b46927d389ea3eb255, type: 3}
+      propertyPath: walkSound
+      value: 
+      objectReference: {fileID: 11400000, guid: c31a7a4eeceeca144af8a11a9e83ebf3, type: 2}
+    - target: {fileID: 8647258401870591633, guid: 3ca4965f75e6f6b46927d389ea3eb255, type: 3}
       propertyPath: ballHitSound
       value: 
       objectReference: {fileID: 11400000, guid: f6bc7262be9047943ae6074d22b379e9, type: 2}
+    - target: {fileID: 8647258401870591633, guid: 3ca4965f75e6f6b46927d389ea3eb255, type: 3}
+      propertyPath: successSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 54df1a3d1394b414c932d024fa2627c0, type: 2}
     - target: {fileID: 8647258401870591633, guid: 3ca4965f75e6f6b46927d389ea3eb255, type: 3}
       propertyPath: ballHitBallSound
       value: 
@@ -18995,6 +19022,14 @@ PrefabInstance:
       propertyPath: ballHitWallSound
       value: 
       objectReference: {fileID: 11400000, guid: 556a950756ee97442859ee8ac2c8a1f6, type: 2}
+    - target: {fileID: 8647258401870591633, guid: 3ca4965f75e6f6b46927d389ea3eb255, type: 3}
+      propertyPath: ballPocketedSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a2283e381e37be41a73a4624b239f68, type: 2}
+    - target: {fileID: 8647258401870591633, guid: 3ca4965f75e6f6b46927d389ea3eb255, type: 3}
+      propertyPath: keyboardClackSound
+      value: 
+      objectReference: {fileID: 11400000, guid: c1be7fa031dec104a8e55f9435653d56, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19104,6 +19139,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8209710627453572650, guid: b24cc8441a483344a91492529d45c415, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209710627453572650, guid: b24cc8441a483344a91492529d45c415, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209710627453572650, guid: b24cc8441a483344a91492529d45c415, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209710627453572650, guid: b24cc8441a483344a91492529d45c415, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 2dbfc37394ac8f147ac2b7cfab095ca0, type: 2}
+    - target: {fileID: 8209710627453572650, guid: b24cc8441a483344a91492529d45c415, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290016945
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -19128,6 +19183,10 @@ PrefabInstance:
       propertyPath: interactionText
       value: 
       objectReference: {fileID: 2101086303}
+    - target: {fileID: 588511371970163393, guid: b5dde8612da1e614ea531086992637e5, type: 3}
+      propertyPath: distancePerStep
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5388544942229669704, guid: b5dde8612da1e614ea531086992637e5, type: 3}
       propertyPath: m_Name
       value: Player Prefab

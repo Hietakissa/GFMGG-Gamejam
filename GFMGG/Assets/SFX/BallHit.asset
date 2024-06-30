@@ -17,7 +17,7 @@ MonoBehaviour:
   volumeRange: {x: 1, y: 1}
   pitchRange: {x: 1, y: 1}
   clips:
-  - _Name: Ball_hit_ball
+  - _Name: "Ball_hit_kepill\xE4"
     _HasBeenManuallySet: 1
     overrideMixer: {fileID: 0}
     clip: {fileID: 8300000, guid: 48309a17e19442c499974e7dc722dbae, type: 3}
