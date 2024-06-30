@@ -59,6 +59,7 @@ public class BilliardMinigame : Minigame
         aiming = true;
         ballsSunk = 0;
         strokes = 0;
+        manager.BilliardGameShotsText.text = $"{strokes}\n---\n{CONST_MAX_STROKES}";
 
         yield return UIManager.Instance.FadeInCor();
         manager.BilliardGameHolder.SetActive(true);
@@ -207,10 +208,11 @@ public class BilliardMinigame : Minigame
         cueBallRB.velocity = Vector3.zero;
         cueBallRB.angularVelocity = 0f;
         cueBallRB.Sleep();
-        cueBallRB.position = cueBallStartPosition;
+        //cueBallRB.position = cueBallStartPosition;
+        cueBallRB.transform.position = cueBallStartPosition;
         cueBallRB.rotation = 0f;
         cueBallRB.gameObject.SetActive(true);
-        cueBallRB.Sleep();
+        //cueBallRB.Sleep();
 
         for (int i = 0; i < valueBallRBs.Length; i++)
         {
@@ -218,10 +220,11 @@ public class BilliardMinigame : Minigame
             rb.velocity = Vector3.zero;
             rb.angularVelocity = 0f;
             rb.Sleep();
-            rb.position = valueBallStartPositions[i];
+            //rb.position = valueBallStartPositions[i];
+            rb.transform.position = valueBallStartPositions[i];
             rb.rotation = 0f;
             rb.gameObject.SetActive(true);
-            rb.Sleep();
+            //rb.Sleep();
         }
     }
 

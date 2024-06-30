@@ -26,7 +26,7 @@ public class BoxingMinigame : Minigame
     int blockDirection;
 
 
-    float punchDelay = 0.2f;
+    float punchDelay = 0.15f;
     float punchDelayTime;
 
     int jariBaseMaxLives = 100;
@@ -51,8 +51,17 @@ public class BoxingMinigame : Minigame
         jariMaxLives = (jariBaseMaxLives * manager.DifficultyMultiplier).RoundDown();
         jariLives = jariMaxLives;
         lives = maxLives;
+        punchDelayTime = 0f;
         manager.BoxingGameJariLivesFill.fillAmount = 1f;
         manager.BoxingGamePlayerLivesFill.fillAmount = 1f;
+
+        for (int i = 0; i < 3; i++)
+        {
+            manager.BoxingGameExclamationSprites[i].SetActive(false);
+        }
+
+        manager.BoxingGameJariSprite.sprite = manager.BoxingGameJariSprites[3];
+        manager.BoxingGamePlayerHandsSprite.sprite = manager.BoxingGamePlayerSprites[4];
 
         yield return UIManager.Instance.FadeInCor();
         manager.BoxingGameHolder.SetActive(true);
