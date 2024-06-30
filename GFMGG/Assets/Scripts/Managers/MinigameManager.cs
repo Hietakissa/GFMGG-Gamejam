@@ -91,6 +91,26 @@ public class MinigameManager : Manager
     public GameObject ShowImageGameHolder => showImageGameHolder;
     public int ShowImageGameIndex => showImageGameIndex;
     #endregion
+    #region Boxing Game
+    [Header("Boxing Game")]
+    [SerializeField] GameObject boxingGameHolder;
+    [SerializeField] Image boxingGameJariSprite;
+    [SerializeField] Sprite[] boxingGameJariSprites;
+    [SerializeField] Sprite[] boxingGamePlayerSprites;
+    [SerializeField] GameObject[] boxingGameExclamationSprites;
+    [SerializeField] Image boxingGamePlayerHandsSprite;
+    [SerializeField] Image boxingGameJariLivesFill;
+    [SerializeField] Image boxingGamePlayerLivesFill;
+
+    public GameObject BoxingGameHolder => boxingGameHolder;
+    public Image BoxingGameJariSprite => boxingGameJariSprite;
+    public Sprite[] BoxingGameJariSprites => boxingGameJariSprites;
+    public Sprite[] BoxingGamePlayerSprites => boxingGamePlayerSprites;
+    public GameObject[] BoxingGameExclamationSprites => boxingGameExclamationSprites;
+    public Image BoxingGamePlayerHandsSprite => boxingGamePlayerHandsSprite;
+    public Image BoxingGameJariLivesFill => boxingGameJariLivesFill;
+    public Image BoxingGamePlayerLivesFill => boxingGamePlayerLivesFill;
+    #endregion
 
     [SerializeField] GameObject timerBar;
     [SerializeField] Image timerfill;
@@ -106,6 +126,7 @@ public class MinigameManager : Manager
     ToiletMinigame toiletMinigame = new ToiletMinigame();
     BilliardMinigame billiardMinigame = new BilliardMinigame();
     ShowImageMinigame showImageMinigame = new ShowImageMinigame();
+    BoxingMinigame boxingMinigame = new BoxingMinigame();
     Minigame currentMinigame;
 
 
@@ -135,6 +156,7 @@ public class MinigameManager : Manager
             MinigameType.Toilet => toiletMinigame,
             MinigameType.Billiard => billiardMinigame,
             MinigameType.ShowImage => showImageMinigame,
+            MinigameType.Boxing => boxingMinigame,
             _ => null
         };
 

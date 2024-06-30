@@ -17,7 +17,8 @@ public enum MinigameType
     Coffee,
     Toilet,
     Billiard,
-    ShowImage
+    ShowImage,
+    Boxing
 }
 
 public enum MinigameEndType

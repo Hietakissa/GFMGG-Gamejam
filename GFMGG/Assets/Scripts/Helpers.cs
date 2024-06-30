@@ -12,4 +12,15 @@ public static class Helpers
         }
         return false;
     }
+
+    public static bool Key(ref KeyCode[] keycodes, bool capturable = true)
+    {
+        if (capturable && GameManager.Instance.InputCapture) return false;
+
+        for (int i = 0; i < keycodes.Length; i++)
+        {
+            if (Input.GetKey(keycodes[i])) return true;
+        }
+        return false;
+    }
 }
