@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 0}
+  cameraController: {fileID: 0}
   externalManagers: []
 --- !u!1 &3925009817373772300
 GameObject:
@@ -145,9 +146,49 @@ MonoBehaviour:
   - vessaselfie
   - pelifarmi
   - villeonparas666
-  passwordGameTypeText: {fileID: 0}
-  passwordGameDashText: {fileID: 0}
   passwordGameNormalColor: {r: 1, g: 1, b: 1, a: 0}
   passwordGameNextCharacterColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   passwordGameWinColor: {r: 0.21048117, g: 0.8867924, b: 0.18823427, a: 0}
   passwordGameLoseColor: {r: 1, g: 0.2783019, b: 0.2783019, a: 0}
+  passwordGameTypeText: {fileID: 0}
+  passwordGameDashText: {fileID: 0}
+  coffeeGameHolder: {fileID: 0}
+  coffeeGameIndicator: {fileID: 0}
+  coffeeGameIndicatorTop: {fileID: 0}
+  coffeeGameIndicatorBottom: {fileID: 0}
+  coffeeGameIndicatorAbsoluteTop: {fileID: 0}
+  coffeeGameIndicatorAbsoluteBottom: {fileID: 0}
+  coffeeGameArea: {fileID: 0}
+  coffeeGameBackground: {fileID: 0}
+  toiletGameHolder: {fileID: 0}
+  toiletGameScreen1: {fileID: 0}
+  toiletGameScreen2: {fileID: 0}
+  toiletGameFillBar: {fileID: 0}
+  billiardGameHolder: {fileID: 0}
+  billiardGameCameraOverride: {fileID: 0}
+  billiardGamePockets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  billiardGameCueBall: {fileID: 0}
+  billiardGameValueBalls:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  billiardGameCueRotate: {fileID: 0}
+  billiardGameCueMove: {fileID: 0}

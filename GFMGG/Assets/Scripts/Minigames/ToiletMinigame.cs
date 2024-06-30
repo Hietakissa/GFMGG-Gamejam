@@ -48,6 +48,13 @@ public class ToiletMinigame : Minigame
 
     public override void Update()
     {
+        if (waitingForToilet)
+        {
+            if (Helpers.KeyDown(ref poopKeyCodes, false))
+            {
+                ToiletClicked();
+            }
+        }
         if (!running) return;
 
         const float CONST_MAX_RAMP_UP_SPEED = 2f;

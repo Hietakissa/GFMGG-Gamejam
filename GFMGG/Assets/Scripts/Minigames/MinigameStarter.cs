@@ -3,6 +3,8 @@ using UnityEngine;
 public class MinigameStarter : MonoBehaviour, IInteractable
 {
     [SerializeField] MinigameType minigame;
+    [SerializeField]
+    [ConditionalField(nameof(minigame), (int)MinigameType.ShowImage)] int imageIndex;
 
     public string GetInteractionText()
     {
@@ -18,5 +20,6 @@ public class MinigameStarter : MonoBehaviour, IInteractable
     public void Interact()
     {
         MinigameManager.Instance.StartMinigame(minigame);
+        if (minigame == MinigameType.ShowImage) MinigameManager.Instance.SetImageIndex(imageIndex);
     }
 }

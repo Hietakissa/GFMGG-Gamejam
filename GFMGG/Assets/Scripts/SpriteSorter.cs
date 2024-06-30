@@ -5,11 +5,11 @@ public class SpriteSorter : MonoBehaviour
     [SerializeField] SpriteRenderer targetSpriteRenderer;
     [SerializeField] int aboveOrder;
     [SerializeField] int belowOrder;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (!spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()

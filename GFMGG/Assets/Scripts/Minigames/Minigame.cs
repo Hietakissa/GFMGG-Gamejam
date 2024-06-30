@@ -16,7 +16,8 @@ public enum MinigameType
     Password,
     Coffee,
     Toilet,
-    Billiard
+    Billiard,
+    ShowImage
 }
 
 public enum MinigameEndType

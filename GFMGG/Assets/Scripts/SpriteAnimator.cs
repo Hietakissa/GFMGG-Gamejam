@@ -1,8 +1,10 @@
+using UnityEngine.UI;
 using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
 {
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Image image;
     [SerializeField] SpriteAnimationState[] animationStates;
 
     [SerializeField] int stateIndex;
@@ -31,7 +33,8 @@ public class SpriteAnimator : MonoBehaviour
 
     void RefreshSprite()
     {
-        spriteRenderer.sprite = animationStates[stateIndex].SubStates[subStateIndex].Frames[frame];
+        if (spriteRenderer) spriteRenderer.sprite = animationStates[stateIndex].SubStates[subStateIndex].Frames[frame];
+        else if (image) image.sprite = animationStates[stateIndex].SubStates[subStateIndex].Frames[frame];
     }
 
     void Update()

@@ -81,11 +81,20 @@ public class MinigameManager : Manager
     public Transform BilliardGameCueRotate => billiardGameCueRotate;
     public Transform BilliardGameCueMove => billiardGameCueMove;
     #endregion
+    #region
+    [Header("Show Image Minigame")]
+    [SerializeField] GameObject showImageGameHolder;
+    int showImageGameIndex;
+
+    public GameObject ShowImageGameHolder => showImageGameHolder;
+    public int ShowImageGameIndex => showImageGameIndex;
+    #endregion
 
     PasswordMinigame passwordMinigame = new PasswordMinigame();
     CoffeeMinigame coffeeMinigame = new CoffeeMinigame();
     ToiletMinigame toiletMinigame = new ToiletMinigame();
     BilliardMinigame billiardMinigame = new BilliardMinigame();
+    ShowImageMinigame showImageMinigame = new ShowImageMinigame();
     Minigame currentMinigame;
 
 
@@ -114,6 +123,7 @@ public class MinigameManager : Manager
             MinigameType.Coffee => coffeeMinigame,
             MinigameType.Toilet => toiletMinigame,
             MinigameType.Billiard => billiardMinigame,
+            MinigameType.ShowImage => showImageMinigame,
             _ => null
         };
 
@@ -143,4 +153,5 @@ public class MinigameManager : Manager
     {
         toiletMinigame.ToiletClicked();
     }
+    public void SetImageIndex(int index) => showImageGameIndex = index;
 }
