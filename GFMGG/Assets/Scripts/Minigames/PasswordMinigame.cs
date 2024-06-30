@@ -11,6 +11,10 @@ public class PasswordMinigame : Minigame
     string password;
     string nextChar;
 
+    float timePerCharacter = 0.4f;
+    float wordMaxTime;
+    float time;
+
     public override IEnumerator StartCor(MinigameManager manager)
     {
         this.manager = manager;
@@ -21,7 +25,12 @@ public class PasswordMinigame : Minigame
         passwordCharIndex = 0;
         nextChar = password[passwordCharIndex].ToString();
 
+        wordMaxTime = timePerCharacter * password.Length;
+        time = wordMaxTime;
+
         yield return UIManager.Instance.FadeInCor();
+        manager.TimerBar.SetActive(true);
+        manager.TimerFill.fillAmount = 1f;
         manager.PasswordGameHolder.SetActive(true);
         UpdateText(MinigameEndType.None);
         yield return UIManager.Instance.FadeWaitCor();
@@ -34,6 +43,7 @@ public class PasswordMinigame : Minigame
     public override IEnumerator EndCor(MinigameEndType minigameEndType)
     {
         yield return UIManager.Instance.FadeInCor();
+        manager.TimerBar.SetActive(false);
         manager.PasswordGameHolder.SetActive(false);
         yield return UIManager.Instance.FadeWaitCor();
         yield return UIManager.Instance.FadeOutCor();
@@ -43,6 +53,15 @@ public class PasswordMinigame : Minigame
     public override void Update()
     {
         if (!running) return;
+
+        time -= Time.deltaTime;
+        manager.TimerFill.fillAmount = time / wordMaxTime;
+
+        if (time <= 0f)
+        {
+            Stop(MinigameEndType.Lose);
+            return;
+        }
 
         string input = Input.inputString.ToLower();
         if (string.IsNullOrEmpty(input)) return;
@@ -93,7 +112,7 @@ public class PasswordMinigame : Minigame
             // Question marks
             int questionMarkNum = password.Length - passwordCharIndex - 1;
 
-            Debug.Log($"Written: {written}, Next char: {nextChar}, Question marks: {questionMarkNum}");
+            //Debug.Log($"Written: {written}, Next char: {nextChar}, Question marks: {questionMarkNum}");
             passwordSB.Append($"<color=#{ColorUtility.ToHtmlStringRGB(manager.PasswordGameNormalColor)}>");
             passwordSB.Insert(passwordSB.Length, "?", questionMarkNum);
             passwordSB.Append("</color>");

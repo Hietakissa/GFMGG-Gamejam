@@ -81,7 +81,7 @@ public class MinigameManager : Manager
     public Transform BilliardGameCueRotate => billiardGameCueRotate;
     public Transform BilliardGameCueMove => billiardGameCueMove;
     #endregion
-    #region
+    #region ShowImage Game
     [Header("Show Image Minigame")]
     [SerializeField] GameObject showImageGameHolder;
     int showImageGameIndex;
@@ -89,6 +89,13 @@ public class MinigameManager : Manager
     public GameObject ShowImageGameHolder => showImageGameHolder;
     public int ShowImageGameIndex => showImageGameIndex;
     #endregion
+
+    [SerializeField] GameObject timerBar;
+    [SerializeField] Image timerfill;
+
+    public GameObject TimerBar => timerBar;
+    public Image TimerFill => timerfill;
+
 
     PasswordMinigame passwordMinigame = new PasswordMinigame();
     CoffeeMinigame coffeeMinigame = new CoffeeMinigame();

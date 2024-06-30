@@ -122,6 +122,8 @@ public class BilliardMinigame : Minigame
 
                 strokes++;
                 lastShot = Time.time;
+
+                SoundManager.Instance.PlaySound(SoundType.BallHit);
             }
         }
     }
@@ -172,19 +174,22 @@ public class BilliardMinigame : Minigame
     {
         cueBallRB.velocity = Vector3.zero;
         cueBallRB.angularVelocity = 0f;
+        cueBallRB.Sleep();
         cueBallRB.position = cueBallStartPosition;
-        cueBallRB.transform.position = cueBallStartPosition;
         cueBallRB.rotation = 0f;
         cueBallRB.gameObject.SetActive(true);
+        cueBallRB.Sleep();
 
         for (int i = 0; i < valueBallRBs.Length; i++)
         {
             Rigidbody2D rb = valueBallRBs[i];
             rb.velocity = Vector3.zero;
             rb.angularVelocity = 0f;
+            rb.Sleep();
             rb.position = valueBallStartPositions[i];
             rb.rotation = 0f;
             rb.gameObject.SetActive(true);
+            rb.Sleep();
         }
     }
 

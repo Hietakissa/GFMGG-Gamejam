@@ -1,0 +1,81 @@
+using HietakissaUtils;
+using HietakissaUtils.Pooling;
+using HietakissaUtils.QOL;
+
+using System.Collections;
+
+using UnityEngine;
+
+public class SoundManager : Manager
+{
+    public static SoundManager Instance;
+
+    [SerializeField] bool initializeOnStart;
+    ObjectPool<AudioSource> sourcePool;
+
+    [SerializeField] SoundContainer ballHitBallSound;
+    [SerializeField] SoundContainer ballHitWallSound;
+    [SerializeField] SoundContainer ballHitSound;
+
+    AudioSource CreateSource()
+    {
+        AudioSource source = new GameObject($"Pooled AudioSource [{sourcePool.pooledObjects.Length + 1}]", typeof(AudioSource)).GetComponent<AudioSource>();
+        source.transform.parent = transform;
+        return source;
+    }
+    void GetFromPool(AudioSource source) { }
+    void ReturnToPool(AudioSource source) { }
+
+    void Awake()
+    {
+        if (initializeOnStart) Initialize();
+    }
+
+
+    public override void Initialize()
+    {
+        Instance = this;
+        sourcePool = new ObjectPool<AudioSource>(ReturnToPool, GetFromPool, CreateSource);
+    }
+
+    public void PlaySound(SoundContainer sound)
+    {
+        AudioSource source = sourcePool.Get();
+        sound.ApplyToAudioSource(source);
+        source.Play();
+    }
+
+    public void PlaySound(SoundType type)
+    {
+        AudioSource source = sourcePool.Get();
+        switch (type)
+        {
+            case SoundType.BallHitBall: ballHitBallSound.ApplyToAudioSource(source); break;
+            case SoundType.BallHitWall: ballHitWallSound.ApplyToAudioSource(source); break;
+            case SoundType.BallHit: ballHitSound.ApplyToAudioSource(source); break;
+            default: break;
+        }
+
+        ReturnSourceToPool(source);
+        source.Play();
+    }
+
+    void ReturnSourceToPool(AudioSource source)
+    {
+        StartCoroutine(ReturnSourceToPoolCor());
+
+        IEnumerator ReturnSourceToPoolCor()
+        {
+            float time = source.GetMaxClipLength().RoundUp();
+            yield return QOL.WaitForSeconds.Get(time);
+            sourcePool.Return(source);
+        }
+    }
+}
+
+public enum SoundType
+{
+    BallHitBall,
+    BallHitWall,
+    BallHit
+}

@@ -62,7 +62,8 @@ public class CoffeeMinigame : Minigame
         {
             Debug.Log($"Coffee game stopped, t: {t}, range: {areaCenter - areaHeightPercent * 0.5f} - {areaCenter + areaHeightPercent * 0.5f}");
 
-            if (t > areaCenter - areaHeightPercent * 0.5f - indicatorHeightPercent * 0.5f && t < areaCenter + areaHeightPercent * 0.5f + indicatorHeightPercent * 0.5f)
+            //if (t > areaCenter - areaHeightPercent * 0.5f - indicatorHeightPercent * 0.5f && t < areaCenter + areaHeightPercent * 0.5f + indicatorHeightPercent * 0.5f)
+            if (t > areaCenter - areaHeightPercent * 0.5f && t < areaCenter + areaHeightPercent * 0.5f)
             {
                 Stop(MinigameEndType.Win);
             }

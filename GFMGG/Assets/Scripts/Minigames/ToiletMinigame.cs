@@ -57,8 +57,8 @@ public class ToiletMinigame : Minigame
         }
         if (!running) return;
 
-        const float CONST_MAX_RAMP_UP_SPEED = 2f;
-        if (rampingUpSpeed < CONST_MAX_RAMP_UP_SPEED) rampingUpSpeed += 0.5f * Time.deltaTime;
+        const float CONST_MAX_RAMP_UP_SPEED = 1.5f;
+        if (rampingUpSpeed < CONST_MAX_RAMP_UP_SPEED) rampingUpSpeed += 0.25f * Time.deltaTime;
         else if (rampingUpSpeed > CONST_MAX_RAMP_UP_SPEED) rampingUpSpeed = CONST_MAX_RAMP_UP_SPEED;
 
         flatulence -= bowelFillRate * rampingUpSpeed * Time.deltaTime;

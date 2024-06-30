@@ -5,6 +5,8 @@ public class MinigameStarter : MonoBehaviour, IInteractable
     [SerializeField] MinigameType minigame;
     [SerializeField]
     [ConditionalField(nameof(minigame), (int)MinigameType.ShowImage)] int imageIndex;
+    [SerializeField]
+    [ConditionalField(nameof(minigame), (int)MinigameType.ShowImage)] string dialogue;
 
     public string GetInteractionText()
     {
