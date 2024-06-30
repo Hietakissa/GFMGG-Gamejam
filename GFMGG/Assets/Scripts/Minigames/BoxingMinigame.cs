@@ -35,6 +35,8 @@ public class BoxingMinigame : Minigame
     int maxLives = 3;
     int lives;
 
+    float jariSpriteResetTime;
+
     public override IEnumerator StartCor(MinigameManager manager)
     {
         this.manager = manager;
@@ -75,6 +77,9 @@ public class BoxingMinigame : Minigame
     {
         if (!running) return;
 
+        if (jariSpriteResetTime > 0f) jariSpriteResetTime -= Time.deltaTime;
+        else manager.BoxingGameJariSprite.sprite = manager.BoxingGameJariSprites[3];
+
         if (jariPunchCooldown > 0f) jariPunchCooldown -= Time.deltaTime;
         else
         {
@@ -82,6 +87,8 @@ public class BoxingMinigame : Minigame
             {
                 jariWaitingForPunch = true;
                 jariPunchDirection = Random.Range(0, 3); // 0 left 1 middle 2 right (relative to player)
+                //manager.BoxingGameJariSprite.sprite = manager.BoxingGameJariSprites[1];
+
                 for (int i = 0; i < 3; i++)
                 {
                     manager.BoxingGameExclamationSprites[i].SetActive(false);
@@ -102,6 +109,7 @@ public class BoxingMinigame : Minigame
         {
             punchDelayTime -= Time.deltaTime;
             manager.BoxingGamePlayerHandsSprite.sprite = manager.BoxingGamePlayerSprites[3];
+            manager.BoxingGameJariSprite.sprite = manager.BoxingGameJariSprites[4];
         }
         else manager.BoxingGamePlayerHandsSprite.sprite = manager.BoxingGamePlayerSprites[4];
 
@@ -121,6 +129,9 @@ public class BoxingMinigame : Minigame
 
         jariPunchCooldown = Random.Range(jariMinPunchCooldown, jariMaxPunchCooldown);
         jariWaitingForPunch = false;
+
+        manager.BoxingGameJariSprite.sprite = manager.BoxingGameJariSprites[jariPunchDirection];
+        jariSpriteResetTime = jariMinPunchCooldown * 0.75f;
 
         for (int i = 0; i < 3; i++)
         {
