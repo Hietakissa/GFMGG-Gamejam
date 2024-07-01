@@ -16,8 +16,8 @@ public class BilliardMinigame : Minigame
     float ballStopThreshold = 0.015f;
     float woundUpForce;
 
-    float pocketSuckThreshold = 0.275f;
-    float pocketSunkThreshold = 0.115f;
+    float pocketSuckThreshold = 0.2f;
+    float pocketSunkThreshold = 0.12f;
 
     Rigidbody2D[] allBallRBs = new Rigidbody2D[16];
     Rigidbody2D[] valueBallRBs = new Rigidbody2D[15];
@@ -146,22 +146,25 @@ public class BilliardMinigame : Minigame
             for (int p = 0; p < manager.BilliardGamePockets.Length; p++)
             {
                 Transform pocket = manager.BilliardGamePockets[p];
-                if (Vector2.Distance(ballRB.position, pocket.position) <= pocketSunkThreshold)
+                if (Vector2.Distance(ballRB.position, pocket.position) - 0.07f <= pocketSunkThreshold)
                 {
-                    if (ballRB == cueBallRB)
-                    {
-                        ballRB.gameObject.SetActive(false);
-                        Stop(MinigameEndType.Lose);
-                    }
-                    else
-                    {
-                        PocketBall(ballRB);
-                    }
+                    //if (ballRB == cueBallRB)
+                    //{
+                    //    ballRB.gameObject.SetActive(false);
+                    //    Stop(MinigameEndType.Lose);
+                    //}
+                    //else
+                    //{
+                    //    PocketBall(ballRB);
+                    //}
+                    PocketBall(ballRB);
                 }
-                else if (Vector2.Distance(ballRB.position, pocket.position) <= pocketSuckThreshold)
+                else if (Vector2.Distance(ballRB.position, pocket.position) - 0.07f <= pocketSuckThreshold)
                 {
+
                     Vector2 dirToPocket = (Vector2)pocket.position - ballRB.position;
-                    ballRB.AddForce(dirToPocket * 3.5f);
+                    Debug.Log($"In suck threshold. Force vector: {dirToPocket}");
+                    ballRB.AddForce(dirToPocket * 6.5f);
                 }
             }
         }
@@ -173,26 +176,38 @@ public class BilliardMinigame : Minigame
 
         IEnumerator PocketBallCor()
         {
-            ballRB.velocity = ballRB.velocity * 0.2f;
+            ballRB.velocity = ballRB.velocity * 0.03f;
 
             pocketingBalls.Add(ballRB);
+            TrailRenderer trail = ballRB.GetComponent<TrailRenderer>();
 
             float time = 1f;
             while (time > 0f)
             {
                 time -= 2f * Time.deltaTime;
                 ballRB.transform.localScale = Vector3.one * time;
+                if (trail) trail.widthMultiplier = time;
                 yield return null;
             }
 
             ballRB.gameObject.SetActive(false);
             ballRB.transform.localScale = Vector3.one;
-            ballsSunk++;
+            if (trail) trail.widthMultiplier = 1f;
 
             SoundManager.Instance.PlaySound(SoundType.BallPocketed);
 
             pocketingBalls.Remove(ballRB);
-            if (ballsSunk >= 15) Stop(MinigameEndType.Win);
+            
+            if (ballRB == cueBallRB)
+            {
+                Stop(MinigameEndType.Lose);
+            }
+            else
+            {
+                ballsSunk++;
+                if (ballsSunk >= 15) Stop(MinigameEndType.Win);
+            }
+            
         }
     }
 
